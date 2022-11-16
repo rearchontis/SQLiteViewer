@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import {Button} from 'react-native';
 import RNFS, {type DownloadFileOptions} from 'react-native-fs';
-import {Root} from './RootNavigator';
 import {queryTables} from './db';
+import {Root} from './RootNavigator';
 import {WebViewWrapper} from './WebViewWrapper';
 
 const loadSQLiteFile = async () => {
