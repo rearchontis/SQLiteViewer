@@ -1,32 +1,30 @@
-import React from 'react';
-import {WebView} from 'react-native-webview';
-import {queryTables} from './db';
+import React, {useRef} from 'react';
+import {WebView, type WebViewMessageEvent} from 'react-native-webview';
+import {queryDataFromTable, queryTables} from './db';
 
-export class WebViewWrapper extends React.Component {
-  webViewRef: React.RefObject<{current: {postMessage: (str: string) => void}}>;
-  state = {};
+export const WebViewWrapper = () => {
+  const ref = useRef<WebView>(null);
 
-  constructor(props: {} | Readonly<{}>) {
-    super(props);
-    this.webViewRef = React.createRef();
-  }
+  const handler = async (event: WebViewMessageEvent) => {
+    switch (event.nativeEvent.data) {
+      case 'queryTables':
+        const response = await queryTables();
 
-  render() {
-    return (
-      <WebView
-        source={{
-          uri: 'http://localhost:8001/',
-        }}
-        ref={this.webViewRef}
-        onMessage={async event => {
-          if (event.nativeEvent.data === 'queryTables') {
-            this.webViewRef.current?.postMessage(
-              JSON.stringify(await queryTables()),
-            );
-            // console.log(await db.executeSql('SELECT * FROM Clients'));
-          }
-        }}
-      />
-    );
-  }
-}
+        ref.current?.postMessage(JSON.stringify(response));
+        break;
+      case 'queryClients':
+        const result = await queryDataFromTable('clients');
+
+        ref.current?.postMessage(JSON.stringify(result));
+        break;
+    }
+  };
+
+  return (
+    <WebView
+      ref={ref}
+      onMessage={handler}
+      source={{uri: 'http://localhost:8000/'}}
+    />
+  );
+};
