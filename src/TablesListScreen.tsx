@@ -4,23 +4,23 @@ import {List, Divider} from 'react-native-paper';
 import type {StackNavigationProp} from '@react-navigation/stack';
 
 interface TablesListScreenProps {
-  navigation?: StackNavigationProp<{[key: string]: undefined}>;
-  tables: Array<{tbl_name: string}>;
+    navigation?: StackNavigationProp<{[key: string]: undefined}>;
+    tables: Array<{tbl_name: string}>;
 }
 
 export const TablesListScreen = ({
-  tables,
-  navigation,
+    tables,
+    navigation,
 }: TablesListScreenProps) => (
-  <FlatList
-    data={tables}
-    renderItem={({item}) => (
-      <List.Item
-        title={item.tbl_name}
-        onPress={() => navigation!.navigate(item.tbl_name)}
-      />
-    )}
-    keyExtractor={item => item.tbl_name}
-    ItemSeparatorComponent={Divider}
-  />
+    <FlatList
+        data={tables}
+        keyExtractor={item => item.tbl_name}
+        ItemSeparatorComponent={Divider}
+        renderItem={({item}) => (
+            <List.Item
+                title={item.tbl_name}
+                onPress={() => navigation!.navigate(item.tbl_name)}
+            />
+        )}
+    />
 );
