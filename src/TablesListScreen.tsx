@@ -8,19 +8,11 @@ interface TablesListScreenProps {
     tables: Array<{tbl_name: string}>;
 }
 
-export const TablesListScreen = ({
-    tables,
-    navigation,
-}: TablesListScreenProps) => (
+export const TablesListScreen = ({tables, navigation}: TablesListScreenProps) => (
     <FlatList
         data={tables}
         keyExtractor={item => item.tbl_name}
         ItemSeparatorComponent={Divider}
-        renderItem={({item}) => (
-            <List.Item
-                title={item.tbl_name}
-                onPress={() => navigation!.navigate(item.tbl_name)}
-            />
-        )}
+        renderItem={({item}) => <List.Item title={item.tbl_name} onPress={() => navigation!.navigate(item.tbl_name)} />}
     />
 );

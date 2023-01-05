@@ -24,9 +24,7 @@ export const TableScreen = ({tbl_name}: TableScreenProps) => {
                 <DataTable>
                     <DataTable.Header>
                         {headers.map((header, index) => (
-                            <DataTable.Title
-                                style={styles.cell}
-                                key={String(header) + index}>
+                            <DataTable.Title style={styles.cell} key={String(header) + index}>
                                 {header}
                             </DataTable.Title>
                         ))}
@@ -39,11 +37,7 @@ export const TableScreen = ({tbl_name}: TableScreenProps) => {
                             return (
                                 <DataTable.Row>
                                     {values.map((value, idx) => (
-                                        <DataTable.Cell
-                                            style={styles.cell}
-                                            key={
-                                                String(value) + item.index + idx
-                                            }>
+                                        <DataTable.Cell style={styles.cell} key={String(value) + item.index + idx}>
                                             {String(value).slice(0, 10)}
                                         </DataTable.Cell>
                                     ))}

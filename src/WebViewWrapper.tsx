@@ -21,11 +21,5 @@ export const WebViewWrapper = () => {
 
     const localhost = Platform.OS === 'android' ? '10.0.2.2' : 'localhost';
 
-    return (
-        <WebView
-            ref={ref}
-            onMessage={handler}
-            source={{uri: `http://${localhost}:8020/`}}
-        />
-    );
+    return <WebView ref={ref} onMessage={handler} source={{uri: `http://${localhost}:8020/`}} />;
 };

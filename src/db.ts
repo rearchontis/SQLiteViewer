@@ -1,8 +1,4 @@
-import {
-    openDatabase,
-    enablePromise,
-    type SQLiteDatabase,
-} from 'react-native-sqlite-storage';
+import {openDatabase, enablePromise, type SQLiteDatabase} from 'react-native-sqlite-storage';
 
 export async function queryTables() {
     const db = await SQLiteConnection();

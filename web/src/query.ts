@@ -1,4 +1,4 @@
-export type IncomingMessage = Array<unknown> | Record<string, unknown>;
+export type IncomingMessage = Array<object>;
 
 export const query = (message: string) => {
     return new Promise((resolve: (data: IncomingMessage) => void, reject) => {
